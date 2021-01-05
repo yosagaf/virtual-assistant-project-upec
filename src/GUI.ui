@@ -6,9 +6,14 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>786</width>
-    <height>509</height>
+    <width>861</width>
+    <height>522</height>
    </rect>
+  </property>
+  <property name="font">
+   <font>
+    <pointsize>7</pointsize>
+   </font>
   </property>
   <property name="windowTitle">
    <string>Virtual Assistant</string>
@@ -17,27 +22,33 @@
    <enum>Qt::ToolButtonIconOnly</enum>
   </property>
   <widget class="QWidget" name="centralwidget">
+   <property name="font">
+    <font>
+     <pointsize>7</pointsize>
+    </font>
+   </property>
    <widget class="QGroupBox" name="groupBox_left">
     <property name="geometry">
      <rect>
       <x>10</x>
-      <y>20</y>
-      <width>341</width>
-      <height>451</height>
+      <y>10</y>
+      <width>401</width>
+      <height>481</height>
      </rect>
     </property>
     <property name="font">
      <font>
+      <family>Sans</family>
       <pointsize>10</pointsize>
-      <weight>75</weight>
-      <bold>true</bold>
+      <weight>50</weight>
+      <bold>false</bold>
      </font>
     </property>
     <property name="layoutDirection">
      <enum>Qt::LeftToRight</enum>
     </property>
     <property name="title">
-     <string>Virtual Assistance</string>
+     <string>Virtual Assistant</string>
     </property>
     <property name="alignment">
      <set>Qt::AlignCenter</set>
@@ -46,9 +57,9 @@
      <property name="geometry">
       <rect>
        <x>10</x>
-       <y>20</y>
-       <width>321</width>
-       <height>421</height>
+       <y>30</y>
+       <width>381</width>
+       <height>441</height>
       </rect>
      </property>
      <property name="frameShape">
@@ -60,10 +71,10 @@
      <widget class="QFrame" name="frame_3D">
       <property name="geometry">
        <rect>
-        <x>10</x>
-        <y>10</y>
-        <width>301</width>
-        <height>401</height>
+        <x>0</x>
+        <y>0</y>
+        <width>381</width>
+        <height>441</height>
        </rect>
       </property>
       <property name="frameShape">
@@ -78,17 +89,18 @@
    <widget class="QGroupBox" name="groupBox_right">
     <property name="geometry">
      <rect>
-      <x>370</x>
-      <y>20</y>
-      <width>401</width>
-      <height>451</height>
+      <x>430</x>
+      <y>10</y>
+      <width>411</width>
+      <height>481</height>
      </rect>
     </property>
     <property name="font">
      <font>
+      <family>Sans</family>
       <pointsize>10</pointsize>
-      <weight>75</weight>
-      <bold>true</bold>
+      <weight>50</weight>
+      <bold>false</bold>
      </font>
     </property>
     <property name="title">
@@ -101,15 +113,16 @@
      <property name="geometry">
       <rect>
        <x>9</x>
-       <y>370</y>
-       <width>381</width>
-       <height>71</height>
+       <y>410</y>
+       <width>391</width>
+       <height>61</height>
       </rect>
      </property>
      <property name="font">
       <font>
-       <weight>75</weight>
-       <bold>true</bold>
+       <family>DejaVu Sans</family>
+       <weight>50</weight>
+       <bold>false</bold>
       </font>
      </property>
      <property name="layoutDirection">
@@ -132,8 +145,8 @@
       </property>
       <property name="font">
        <font>
-        <weight>75</weight>
-        <bold>true</bold>
+        <weight>50</weight>
+        <bold>false</bold>
        </font>
       </property>
       <property name="focusPolicy">
@@ -149,7 +162,7 @@
         <x>10</x>
         <y>30</y>
         <width>301</width>
-        <height>20</height>
+        <height>21</height>
        </rect>
       </property>
      </widget>
@@ -158,47 +171,21 @@
      <property name="geometry">
       <rect>
        <x>10</x>
-       <y>20</y>
-       <width>381</width>
-       <height>351</height>
+       <y>30</y>
+       <width>391</width>
+       <height>381</height>
       </rect>
+     </property>
+     <property name="font">
+      <font>
+       <family>DejaVu Serif</family>
+       <pointsize>7</pointsize>
+       <weight>50</weight>
+       <bold>false</bold>
+      </font>
      </property>
     </widget>
    </widget>
-  </widget>
-  <widget class="QMenuBar" name="menubar">
-   <property name="geometry">
-    <rect>
-     <x>0</x>
-     <y>0</y>
-     <width>786</width>
-     <height>21</height>
-    </rect>
-   </property>
-   <widget class="QMenu" name="menuFace">
-    <property name="title">
-     <string>Face</string>
-    </property>
-   </widget>
-   <widget class="QMenu" name="menuPose_Gesture">
-    <property name="title">
-     <string>Pose/Gesture</string>
-    </property>
-   </widget>
-   <widget class="QMenu" name="menuFingerprint">
-    <property name="title">
-     <string>Fingerprint</string>
-    </property>
-   </widget>
-   <widget class="QMenu" name="menuHelp">
-    <property name="title">
-     <string>Help</string>
-    </property>
-   </widget>
-   <addaction name="menuFace"/>
-   <addaction name="menuPose_Gesture"/>
-   <addaction name="menuFingerprint"/>
-   <addaction name="menuHelp"/>
   </widget>
   <widget class="QStatusBar" name="statusbar"/>
  </widget>
