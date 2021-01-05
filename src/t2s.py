@@ -14,7 +14,7 @@ def speak(text):
 def get_audio():
     r=sr.Recognizer()
     with sr.Microphone() as source:
-        audio= r.listen(source)
+        audio = r.listen(source)
         said = ""
         try:
             said = r.recognize_google(audio)

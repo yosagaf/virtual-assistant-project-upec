@@ -1,0 +1,2 @@
+converting QT Designer UI to python UI we use this command:
+python -m PyQt5.uic.pyuic -x (input name file .ui) -o (output name.py).
