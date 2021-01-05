@@ -1,6 +1,4 @@
 import os, sys, math, subprocess, pdb, datetime
-
-
 import dialogflow
 from google.api_core.exceptions import InvalidArgument
 
@@ -10,6 +8,7 @@ DIALOGFLOW_PROJECT_ID = 'virtual-assistant-yojl'
 DIALOGFLOW_LANGUAGE_CODE = 'en'
 SESSION_ID = 'me'
 
+# import PyQt related module
 try:
     from PyQt5 import QtCore, QtGui, QtWidgets
     from PyQt5.QtCore import *
@@ -30,7 +29,7 @@ try:
     from OpenGL.GL import *
     import OpenGL.GL as gl
 except ImportError:
-    print("You need OpenGL!" + "\n" + "run: pip install pyOpenGL")
+    print("You need OpenGL !" + "\n" + "run: pip install pyOpenGL")
     sys.exit()
 
 # PIL libraries
@@ -43,7 +42,7 @@ except ImportError:
     sys.exit()
 
 # numpy libraries
-try:
+try: 
     import numpy
     from numpy import eye
     import numpy as np
@@ -52,10 +51,10 @@ except ImportError:
         "You need numpy!" + "\n" + "run: pip install numpy" + "Or you can download the version numpy+mkl (faster version) there: https://www.lfd.uci.edu/~gohlke/pythonlibs/")
     sys.exit()
 
-# Import the class "Ui_MainWindow" from the GUI file "GUI_Final.py" - The extension ".py" should never be added
+# Import the class "Ui_MainWindow" from the GUI file "GUI.py" - The extension ".py" should never be added
 from GUI import Ui_MainWindow as Ui_MainWindow_0
 
-from df_chatbot import *
+#from df_chatbot import *
 
 InputTexturePath = "Virtual_assistant.png"
 InputModelPath = "Virtual_assistant.obj"
@@ -70,14 +69,14 @@ curDir = os.getcwd()
 b_MainWindowON = True
 b_ChildWindowON = False
 bot_name = ""
+query = ""
+print("query =", query)
 
-
-####################################################################################################
-##              The Main Window (GUI)
-####################################################################################################
+#################################################################
+#                   The Main Window (GUI)
+#################################################################
 
 class MainWindow_0(QMainWindow, Ui_MainWindow_0):
-    #msg=''
     def __init__(self, parent=None):
         global InputModel, InputModelLoaded, InputTextureLoaded
         super(MainWindow_0, self).__init__(parent)
@@ -88,7 +87,7 @@ class MainWindow_0(QMainWindow, Ui_MainWindow_0):
         self.ui.setupUi(self)
 
         self.ui.send_pushButton.clicked.connect(self.querySent)
-        self.ui.room_textEdit.textChanged.connect(self.get_gResponse)
+        #self.ui.room_textEdit.textChanged.connect(self.getResponse)
 
         font = QtGui.QFont()
         font.setPointSize(14)
@@ -96,22 +95,23 @@ class MainWindow_0(QMainWindow, Ui_MainWindow_0):
 
 
     def querySent(self):
-        msg = self.ui.send_lineEdit.text()
+        global query
+        query = self.ui.send_lineEdit.text()
         
         # Grab text and display it in the main chat if there is a message
-        if msg != "":
-            msg = self.ui.send_lineEdit.text()
+        if query != "":
             self.ui.room_textEdit.setTextColor(QColor(0, 0, 255))
-            self.ui.room_textEdit.append("User: " + msg)
+            self.ui.room_textEdit.append("User: " + query)
 
             # Clear out the input box so we can type something else
             self.ui.send_lineEdit.clear()
 
             # Put the focus back into the input box so we can type again
             self.ui.send_lineEdit.setFocus()
+            self.ui.room_textEdit.append("Bot: " + self.getResponse())
 
-    def get_gResponse(self):
-        text_to_be_analyzed = "Hello"
+    def getResponse(self):
+        text_to_be_analyzed = query
 
         session_client = dialogflow.SessionsClient()
         session = session_client.session_path(DIALOGFLOW_PROJECT_ID, SESSION_ID)
@@ -125,20 +125,19 @@ class MainWindow_0(QMainWindow, Ui_MainWindow_0):
 
         result = response.query_result.fulfillment_text
 
+        #self.ui.room_textEdit.moveCursor(QTextCursor.End, QTextCursor.KeepAnchor)
         #self.ui.room_textEdit.setTextColor(QColor(0, 0, 255))
-        #self.ui.room_textEdit.append("Boot:" + result)
-
+        #self.ui.room_textEdit.append("Bot:" + result)
 
         print("Query text:", response.query_result.query_text)
         print("Detected intent:", response.query_result.intent.display_name)
         print("Detected intent confidence:", response.query_result.intent_detection_confidence)
         print("Fulfillment text:", result)
-
+        
         return result
-
-
 '''
     def chatbotCommands(self):
+        
         global bot_name
         # Extract last line of the chat
         chat = self.ui.room_textEdit.textCursor()
@@ -150,8 +149,6 @@ class MainWindow_0(QMainWindow, Ui_MainWindow_0):
 
         self.ui.room_textEdit.setTextCursor(chat)
 '''
-
-
 if __name__ == '__main__':
     import sys
 
