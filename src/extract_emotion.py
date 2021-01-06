@@ -32,12 +32,12 @@ def extractEmotion(text):
 print("\n\n")
 message = ['delivery was hour late and my pizza was cold!']
 
-def speak(text):
+def text2speech(text):
     output = gTTS(text=text, lang='en', slow=False)
     file = "output.mp3"
     output.save(file)
     os.system("start output.mp3")
     playsound.playsound(file)
 
-speak(str(message))
-extractEmotion(message)
+#text2speech(str(message))
+#extractEmotion(message)

@@ -1,6 +1,7 @@
 import os, sys, math, subprocess, pdb, datetime
 import dialogflow
 from google.api_core.exceptions import InvalidArgument
+from extract_emotion import text2speech
 
 os.environ["GOOGLE_APPLICATION_CREDENTIALS"] = 'virtual-assistant.json'
 
@@ -125,6 +126,8 @@ class MainWindow_0(QMainWindow, Ui_MainWindow_0):
             raise
 
         result = response.query_result.fulfillment_text
+        
+        text2speech(result)
 
         #self.ui.room_textEdit.moveCursor(QTextCursor.End, QTextCursor.KeepAnchor)
         #self.ui.room_textEdit.setTextColor(QColor(0, 0, 255))
