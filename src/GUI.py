@@ -64,7 +64,7 @@ class Ui_MainWindow(object):
         self.groupBox_query.setAlignment(QtCore.Qt.AlignLeading|QtCore.Qt.AlignLeft|QtCore.Qt.AlignVCenter)
         self.groupBox_query.setObjectName("groupBox_query")
         self.send_pushButton = QtWidgets.QPushButton(self.groupBox_query)
-        self.send_pushButton.setGeometry(QtCore.QRect(320, 30, 51, 23))
+        self.send_pushButton.setGeometry(QtCore.QRect(260, 30, 61, 23))
         font = QtGui.QFont()
         font.setBold(False)
         font.setWeight(50)
@@ -72,8 +72,11 @@ class Ui_MainWindow(object):
         self.send_pushButton.setFocusPolicy(QtCore.Qt.StrongFocus)
         self.send_pushButton.setObjectName("send_pushButton")
         self.send_lineEdit = QtWidgets.QLineEdit(self.groupBox_query)
-        self.send_lineEdit.setGeometry(QtCore.QRect(10, 30, 301, 21))
+        self.send_lineEdit.setGeometry(QtCore.QRect(10, 30, 241, 21))
         self.send_lineEdit.setObjectName("send_lineEdit")
+        self.radioButton = QtWidgets.QRadioButton(self.groupBox_query)
+        self.radioButton.setGeometry(QtCore.QRect(330, 30, 112, 23))
+        self.radioButton.setObjectName("radioButton")
         self.room_textEdit = QtWidgets.QTextEdit(self.groupBox_right)
         self.room_textEdit.setGeometry(QtCore.QRect(10, 30, 391, 381))
         font = QtGui.QFont()
@@ -98,6 +101,7 @@ class Ui_MainWindow(object):
         self.groupBox_right.setTitle(_translate("MainWindow", "CHATBOT"))
         self.groupBox_query.setTitle(_translate("MainWindow", "Query"))
         self.send_pushButton.setText(_translate("MainWindow", "Send"))
+        self.radioButton.setText(_translate("MainWindow", "MIC"))
 
 
 

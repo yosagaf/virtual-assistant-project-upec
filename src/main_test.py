@@ -1,5 +1,6 @@
 import os, sys, math, subprocess, pdb, datetime
 import dialogflow
+import time
 from google.api_core.exceptions import InvalidArgument
 from extract_emotion import text2speech, extractEmotion
 
@@ -71,6 +72,7 @@ b_MainWindowON = True
 b_ChildWindowON = False
 bot_name = ""
 query = ""
+result = ""
 
 #################################################################
 #                   The Main Window (GUI)
@@ -93,6 +95,8 @@ class MainWindow_0(QMainWindow, Ui_MainWindow_0):
         font.setPointSize(14)
         self.ui.room_textEdit.setFont(font)
 
+        #self.checkBoxA.radioButton.connect(self.checkBoxChangeAction)
+
 
     def querySent(self):
         global query
@@ -111,9 +115,25 @@ class MainWindow_0(QMainWindow, Ui_MainWindow_0):
 
             self.ui.room_textEdit.setTextColor(QColor(255, 0, 255))
             self.ui.room_textEdit.append("Assistant: " + self.getResponse())
+        text2speech(result)
 
+    '''
+    def checkBoxChangeAction(self, state, s):
+            text_query = ""
+        if (QtCore.Qt.Checked == state):
+            text_query = speech2text()
+        else:
+            text_query = s
+
+        return text_query
+    '''
+            
     def getResponse(self):
+        global result
         text_to_be_analyzed = query
+
+        #if button_cliqued :
+        #    text_to_be_analyzed = 
 
         session_client = dialogflow.SessionsClient()
         session = session_client.session_path(DIALOGFLOW_PROJECT_ID, SESSION_ID)
@@ -126,20 +146,18 @@ class MainWindow_0(QMainWindow, Ui_MainWindow_0):
             raise
 
         result = response.query_result.fulfillment_text
-        
-        text2speech(result)
-        extractEmotion(result)
+        #extractEmotion(result)
 
         #self.ui.room_textEdit.moveCursor(QTextCursor.End, QTextCursor.KeepAnchor)
         #self.ui.room_textEdit.setTextColor(QColor(0, 0, 255))
         #self.ui.room_textEdit.append("Bot:" + result)
-        '''
+        
         print("Query text:", response.query_result.query_text)
         print("Detected intent:", response.query_result.intent.display_name)
         print("Detected intent confidence:", response.query_result.intent_detection_confidence)
         print("Fulfillment text:", result)
-        '''
         
+        #time.sleep(0.1)
         return result
 '''
     def chatbotCommands(self):
