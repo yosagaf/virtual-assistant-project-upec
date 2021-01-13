@@ -91,7 +91,6 @@ class MainWindow_0(QMainWindow, Ui_MainWindow_0):
 
         self.ui.send_pushButton.clicked.connect(self.querySent)
         self.ui.mic_push_button.clicked.connect(self.record)
-        #self.ui.room_textEdit.textChanged.connect(self.getResponse)
 
         font = QtGui.QFont()
         font.setPointSize(14)
@@ -103,9 +102,11 @@ class MainWindow_0(QMainWindow, Ui_MainWindow_0):
         
         if maflag == True:
             query = speech2text()
+            #emotion1 = extractEmotion(query)
             maflag = False
         else :
             query = self.ui.send_lineEdit.text()
+            #emotion2 = extractEmotion(query)
 
         # Grab text and display it in the main chat if there is a message
         if query != "":
@@ -121,21 +122,13 @@ class MainWindow_0(QMainWindow, Ui_MainWindow_0):
             self.ui.room_textEdit.setTextColor(QColor(255, 0, 255))
             self.ui.room_textEdit.append("Assistant: " + self.getResponse())
         
+        extractEmotion(result)
         text2speech(result)
 
-    
     def record(self):
         global maflag
         maflag = True
         self.querySent()
-
-        '''
-        global query
-        query = speech2text()
-        text2speech(query)
-        #extractEmotion(query)
-        '''
- 
     
     def getResponse(self):
         global result
@@ -152,11 +145,6 @@ class MainWindow_0(QMainWindow, Ui_MainWindow_0):
             raise
 
         result = response.query_result.fulfillment_text
-        #extractEmotion(result)
-
-        #self.ui.room_textEdit.moveCursor(QTextCursor.End, QTextCursor.KeepAnchor)
-        #self.ui.room_textEdit.setTextColor(QColor(0, 0, 255))
-        #self.ui.room_textEdit.append("Bot:" + result)
         
         print("Query text:", response.query_result.query_text)
         print("Detected intent:", response.query_result.intent.display_name)
@@ -165,20 +153,7 @@ class MainWindow_0(QMainWindow, Ui_MainWindow_0):
         
         #time.sleep(0.1)
         return result
-'''
-    def chatbotCommands(self):
-        
-        global bot_name
-        # Extract last line of the chat
-        chat = self.ui.room_textEdit.textCursor()
 
-        self.ui.room_textEdit.moveCursor(QTextCursor.End, QTextCursor.MoveAnchor)
-        self.ui.room_textEdit.moveCursor(QTextCursor.StartOfLine, QTextCursor.MoveAnchor)
-        self.ui.room_textEdit.moveCursor(QTextCursor.End, QTextCursor.KeepAnchor)
-        lastmsg = self.ui.room_textEdit.textCursor().selectedText()
-
-        self.ui.room_textEdit.setTextCursor(chat)
-'''
 if __name__ == '__main__':
     import sys
 
