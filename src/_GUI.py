@@ -74,14 +74,14 @@ class Ui_MainWindow(object):
         self.send_lineEdit = QtWidgets.QLineEdit(self.groupBox_query)
         self.send_lineEdit.setGeometry(QtCore.QRect(10, 30, 241, 21))
         self.send_lineEdit.setObjectName("send_lineEdit")
-        self.mic_push_button = QtWidgets.QPushButton(self.groupBox_query)
-        self.mic_push_button.setGeometry(QtCore.QRect(330, 30, 51, 23))
+        self.send_pushButton_2 = QtWidgets.QPushButton(self.groupBox_query)
+        self.send_pushButton_2.setGeometry(QtCore.QRect(330, 30, 51, 23))
         font = QtGui.QFont()
         font.setBold(False)
         font.setWeight(50)
-        self.mic_push_button.setFont(font)
-        self.mic_push_button.setFocusPolicy(QtCore.Qt.StrongFocus)
-        self.mic_push_button.setObjectName("mic_push_button")
+        self.send_pushButton_2.setFont(font)
+        self.send_pushButton_2.setFocusPolicy(QtCore.Qt.StrongFocus)
+        self.send_pushButton_2.setObjectName("send_pushButton_2")
         self.room_textEdit = QtWidgets.QTextEdit(self.groupBox_right)
         self.room_textEdit.setGeometry(QtCore.QRect(10, 30, 391, 381))
         font = QtGui.QFont()
@@ -106,7 +106,7 @@ class Ui_MainWindow(object):
         self.groupBox_right.setTitle(_translate("MainWindow", "CHATBOT"))
         self.groupBox_query.setTitle(_translate("MainWindow", "Query"))
         self.send_pushButton.setText(_translate("MainWindow", "Send"))
-        self.mic_push_button.setText(_translate("MainWindow", "MIC"))
+        self.send_pushButton_2.setText(_translate("MainWindow", "MIC"))
 
 
 

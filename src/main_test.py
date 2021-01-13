@@ -2,7 +2,7 @@ import os, sys, math, subprocess, pdb, datetime
 import dialogflow
 import time
 from google.api_core.exceptions import InvalidArgument
-from extract_emotion import text2speech, extractEmotion
+from extract_emotion import text2speech, extractEmotion, speech2text
 
 os.environ["GOOGLE_APPLICATION_CREDENTIALS"] = 'virtual-assistant.json'
 
@@ -73,6 +73,7 @@ b_ChildWindowON = False
 bot_name = ""
 query = ""
 result = ""
+maflag = False
 
 #################################################################
 #                   The Main Window (GUI)
@@ -89,19 +90,23 @@ class MainWindow_0(QMainWindow, Ui_MainWindow_0):
         self.ui.setupUi(self)
 
         self.ui.send_pushButton.clicked.connect(self.querySent)
+        self.ui.mic_push_button.clicked.connect(self.record)
         #self.ui.room_textEdit.textChanged.connect(self.getResponse)
 
         font = QtGui.QFont()
         font.setPointSize(14)
         self.ui.room_textEdit.setFont(font)
 
-        #self.checkBoxA.radioButton.connect(self.checkBoxChangeAction)
-
-
     def querySent(self):
         global query
-        query = self.ui.send_lineEdit.text()
+        global maflag
         
+        if maflag == True:
+            query = speech2text()
+            maflag = False
+        else :
+            query = self.ui.send_lineEdit.text()
+
         # Grab text and display it in the main chat if there is a message
         if query != "":
             self.ui.room_textEdit.setTextColor(QColor(0, 0, 255))
@@ -115,25 +120,26 @@ class MainWindow_0(QMainWindow, Ui_MainWindow_0):
 
             self.ui.room_textEdit.setTextColor(QColor(255, 0, 255))
             self.ui.room_textEdit.append("Assistant: " + self.getResponse())
+        
         text2speech(result)
 
-    '''
-    def checkBoxChangeAction(self, state, s):
-            text_query = ""
-        if (QtCore.Qt.Checked == state):
-            text_query = speech2text()
-        else:
-            text_query = s
+    
+    def record(self):
+        global maflag
+        maflag = True
+        self.querySent()
 
-        return text_query
-    '''
-            
+        '''
+        global query
+        query = speech2text()
+        text2speech(query)
+        #extractEmotion(query)
+        '''
+ 
+    
     def getResponse(self):
         global result
         text_to_be_analyzed = query
-
-        #if button_cliqued :
-        #    text_to_be_analyzed = 
 
         session_client = dialogflow.SessionsClient()
         session = session_client.session_path(DIALOGFLOW_PROJECT_ID, SESSION_ID)

@@ -166,14 +166,23 @@
        </rect>
       </property>
      </widget>
-     <widget class="QRadioButton" name="radioButton">
+     <widget class="QPushButton" name="mic_push_button">
       <property name="geometry">
        <rect>
         <x>330</x>
         <y>30</y>
-        <width>112</width>
+        <width>51</width>
         <height>23</height>
        </rect>
+      </property>
+      <property name="font">
+       <font>
+        <weight>50</weight>
+        <bold>false</bold>
+       </font>
+      </property>
+      <property name="focusPolicy">
+       <enum>Qt::StrongFocus</enum>
       </property>
       <property name="text">
        <string>MIC</string>
