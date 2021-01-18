@@ -46,8 +46,10 @@ def speech2text():
     r=sr.Recognizer()
     with sr.Microphone() as source:
         print("\n\nPlease, start recording :")
+        r.adjust_for_ambient_noise(source)
         audio= r.listen(source)
         said = ""
+        print("Heeeeeeeeeeeeeeeey")
     try:
         said = r.recognize_google(audio)
         print("\n\nYous said :", said)

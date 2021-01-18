@@ -102,6 +102,7 @@ class MainWindow_0(QMainWindow, Ui_MainWindow_0):
         
         if maflag == True:
             query = speech2text()
+            print("My query is :", query)
             #emotion1 = extractEmotion(query)
             maflag = False
         else :
