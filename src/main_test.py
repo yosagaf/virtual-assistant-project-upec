@@ -4,9 +4,9 @@ import time
 from google.api_core.exceptions import InvalidArgument
 from extract_emotion import text2speech, extractEmotion, speech2text
 
-os.environ["GOOGLE_APPLICATION_CREDENTIALS"] = 'virtual-assistant.json'
+os.environ["GOOGLE_APPLICATION_CREDENTIALS"] = 'upec-bot-olvv.json'
 
-DIALOGFLOW_PROJECT_ID = 'virtual-assistant-yojl'
+DIALOGFLOW_PROJECT_ID = 'upec-bot-olvv'
 DIALOGFLOW_LANGUAGE_CODE = 'en'
 SESSION_ID = 'me'
 
@@ -93,7 +93,7 @@ class MainWindow_0(QMainWindow, Ui_MainWindow_0):
         self.ui.mic_push_button.clicked.connect(self.record)
 
         font = QtGui.QFont()
-        font.setPointSize(14)
+        font.setPointSize(10)
         self.ui.room_textEdit.setFont(font)
 
     def querySent(self):
