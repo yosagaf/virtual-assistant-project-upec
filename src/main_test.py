@@ -56,8 +56,6 @@ except ImportError:
 # Import the class "Ui_MainWindow" from the GUI file "GUI.py" - The extension ".py" should never be added
 from GUI import Ui_MainWindow as Ui_MainWindow_0
 
-#from df_chatbot import *
-
 InputTexturePath = "Virtual_assistant.png"
 InputModelPath = "Virtual_assistant.obj"
 InputModel = []
@@ -96,6 +94,7 @@ class MainWindow_0(QMainWindow, Ui_MainWindow_0):
         font.setPointSize(10)
         self.ui.room_textEdit.setFont(font)
 
+    # To be called when the "send" button is pressed 
     def querySent(self):
         global query
         global maflag
@@ -103,7 +102,6 @@ class MainWindow_0(QMainWindow, Ui_MainWindow_0):
         if maflag == True:
             query = speech2text()
             print("My query is :", query)
-            #emotion1 = extractEmotion(query)
             maflag = False
         else :
             query = self.ui.send_lineEdit.text()
@@ -123,14 +121,17 @@ class MainWindow_0(QMainWindow, Ui_MainWindow_0):
             self.ui.room_textEdit.setTextColor(QColor(255, 0, 255))
             self.ui.room_textEdit.append("Assistant: " + self.getResponse())
         
+        # Classify the emotion from the text TAQ for the answer and perform speech to text
         extractEmotion(result)
         text2speech(result)
 
+    # function to be called the MIC button is pressed to process speech recogniton
     def record(self):
         global maflag
         maflag = True
         self.querySent()
     
+    # Get the query and the answer and display it on the text room
     def getResponse(self):
         global result
         text_to_be_analyzed = query
@@ -152,7 +153,6 @@ class MainWindow_0(QMainWindow, Ui_MainWindow_0):
         print("Detected intent confidence:", response.query_result.intent_detection_confidence)
         print("Fulfillment text:", result)
         
-        #time.sleep(0.1)
         return result
 
 if __name__ == '__main__':

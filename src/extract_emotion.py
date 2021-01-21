@@ -30,9 +30,7 @@ def extractEmotion(text):
     print('\n\nPredicted : {} ({:.2f} seconds)'.format(class_names[np.argmax(pred)], (time.time() - start_time)))
 
 print("\n\n")
-#message = ['delivery was hour late and my pizza was cold!']
-
-# 
+ 
 def text2speech(text):
     output = gTTS(text=text, lang='en', slow=False)
     file = "output.mp3"
@@ -49,7 +47,6 @@ def speech2text():
         r.adjust_for_ambient_noise(source)
         audio= r.listen(source)
         said = ""
-        print("Heeeeeeeeeeeeeeeey")
     try:
         said = r.recognize_google(audio)
         print("\n\nYous said :", said)
@@ -62,6 +59,7 @@ def speech2text():
 # Process : speak on the mic and you will get a string containing the message.
 # The message is passed on the text to speech and then we can extract the emotion.
 
+# To test : 
 #message = speech2text()
 #text2speech(message)
 #extractEmotion(message)
